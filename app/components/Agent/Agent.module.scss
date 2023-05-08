@@ -1,0 +1,22 @@
+.Agent {
+  margin-top: 1em;
+}
+
+.Row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+
+  .Label {
+    flex: 150px 0 1;
+    display: flex;
+    justify-content: flex-end;
+    &:after {
+      content: ":";
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+  }
+}

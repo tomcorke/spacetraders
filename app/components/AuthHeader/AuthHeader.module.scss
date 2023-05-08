@@ -1,0 +1,13 @@
+@import "../mixins.scss";
+
+.AuthHeader {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+
+  .Button {
+    @include button;
+  }
+}
