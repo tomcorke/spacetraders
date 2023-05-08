@@ -6,3 +6,4 @@ node_modules
 .env
 /app/components/**/*.module.css
 /app/components/**/*.module.css.map
+/data

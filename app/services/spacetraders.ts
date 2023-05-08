@@ -78,7 +78,7 @@ const MY_AGENT_DETAILS_URL = `${BASE_URL}/v2/my/agent`;
 type RegisterParams = { symbol: string; faction: FACTION };
 export const register = async ({ symbol, faction }: RegisterParams) => {
   const uniqueSymbol = `${symbol}-${customAlphabet(
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
     4
   )()}`;
   console.log(`Registering ${uniqueSymbol} with ${faction}`);

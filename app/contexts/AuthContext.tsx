@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from "react";
+import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import type { Agent, FACTION, Token } from "~/services/spacetraders";
+import type { FACTION, Token } from "~/services/spacetraders";
 import { tokenSchema } from "~/services/spacetraders";
-import { getProfile } from "~/services/spacetraders";
 import { register } from "~/services/spacetraders";
 import z from "zod";
 
@@ -27,27 +27,33 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
   const [token, setToken] = useState<Token | undefined>(undefined);
   const [authError, setAuthError] = useState<string | undefined>(undefined);
 
-  const setAndSaveToken = async (token: Token) => {
-    await fetch("/saveToken", {
-      method: "POST",
-      body: JSON.stringify({ token }),
-    });
-    setToken(token);
-  };
+  const setAndSaveToken = useCallback(
+    async (token: Token) => {
+      await fetch("/saveToken", {
+        method: "POST",
+        body: JSON.stringify({ token }),
+      });
+      setToken(token);
+    },
+    [setToken]
+  );
 
   // Provide register function to create a new account
-  const doRegister = async (symbol: string, faction: FACTION) => {
-    try {
-      const profile = await register({ symbol, faction });
-      await setAndSaveToken(profile.data.token);
-    } catch (err: any) {
-      setAuthError(err.toString());
-    }
-  };
+  const doRegister = useCallback(
+    async (symbol: string, faction: FACTION) => {
+      try {
+        const profile = await register({ symbol, faction });
+        await setAndSaveToken(profile.data.token);
+      } catch (err: any) {
+        setAuthError(err.toString());
+      }
+    },
+    [setAndSaveToken, setAuthError]
+  );
 
-  const doLogOut = async () => {
+  const doLogOut = useCallback(async () => {
     setToken(undefined);
-  };
+  }, [setToken]);
 
   // Load user's token from file on init
   useEffect(() => {
