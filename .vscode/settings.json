@@ -3,5 +3,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "explorer.excludeGitIgnore": true
+  "explorer.excludeGitIgnore": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

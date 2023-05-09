@@ -6,7 +6,8 @@
     "dev": "concurrently \"npm run sass\" \"remix dev\"",
     "start": "remix-serve build",
     "typecheck": "tsc",
-    "sass": "sass --watch app/components/:app/components/"
+    "sass": "sass --watch app/components/:app/components/",
+    "create-api-models": "tsc --skipLibCheck scripts/create-api-models && node scripts/create-api-models.js"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^1.16.0",
