@@ -5,7 +5,7 @@ export const shipFuelSchema = z.object({
   capacity: z.number(),
   consumed: z.object({
     amount: z.number(),
-    timestamp: z.string()
+    timestamp: z.string().datetime()
 })
 });
 

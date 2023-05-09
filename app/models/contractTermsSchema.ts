@@ -2,7 +2,7 @@ import z from "zod";
 import { contractPaymentSchema } from "./contractPaymentSchema";
 
 export const contractTermsSchema = z.object({
-  deadline: z.string(),
+  deadline: z.string().datetime(),
   payment: contractPaymentSchema,
   deliver: z.array()
 });

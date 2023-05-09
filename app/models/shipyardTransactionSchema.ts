@@ -5,7 +5,7 @@ export const shipyardTransactionSchema = z.object({
   shipSymbol: z.string(),
   price: z.number(),
   agentSymbol: z.string(),
-  timestamp: z.string()
+  timestamp: z.string().datetime()
 });
 
 export type ShipyardTransaction = z.infer<typeof shipyardTransactionSchema>;

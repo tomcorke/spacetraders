@@ -4,9 +4,9 @@ import { waypointFactionSchema } from "./waypointFactionSchema";
 import { chartSchema } from "./chartSchema";
 
 export const scannedWaypointSchema = z.object({
-  symbol: z.string(),
+  symbol: z.string().min(1),
   type: waypointTypeSchema,
-  systemSymbol: z.string(),
+  systemSymbol: z.string().min(1),
   x: z.number(),
   y: z.number(),
   orbitals: z.array(),

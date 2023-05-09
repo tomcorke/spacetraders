@@ -100,6 +100,7 @@ const modelSchema = z.discriminatedUnion("type", [
   stringSchema,
   numberSchema,
   arraySchema,
+  booleanSchema,
 ]);
 type Model = z.infer<typeof modelSchema>;
 
@@ -122,12 +123,26 @@ ${Object.entries(model.properties)
   .join(",\n")}
 })`;
     case "string":
-      return `z.string()`;
+      const decorators: string[] = [];
+      if (model.minLength) {
+        decorators.push(`.min(${model.minLength})`);
+      }
+      if (model.format === "date-time") {
+        decorators.push(".datetime()");
+      }
+      if (model.enum) {
+        return `z.enum([${model.enum
+          .map((value) => `"${value}"`)
+          .join(", ")}])`;
+      }
+      return `z.string()${decorators.join("")}`;
     case "array":
       return `z.array()`;
     case "number":
     case "integer":
       return `z.number()`;
+    case "boolean":
+      return `z.boolean()`;
     case undefined:
       const refValue = (model as any).$ref?.split("/").pop().split(".")[0];
       imports.add(toSchemaName(refValue));

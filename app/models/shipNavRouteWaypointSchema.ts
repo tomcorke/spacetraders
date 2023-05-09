@@ -2,9 +2,9 @@ import z from "zod";
 import { waypointTypeSchema } from "./waypointTypeSchema";
 
 export const shipNavRouteWaypointSchema = z.object({
-  symbol: z.string(),
+  symbol: z.string().min(1),
   type: waypointTypeSchema,
-  systemSymbol: z.string(),
+  systemSymbol: z.string().min(1),
   x: z.number(),
   y: z.number()
 });

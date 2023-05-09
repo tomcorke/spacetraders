@@ -3,7 +3,7 @@ import z from "zod";
 export const marketTradeGoodSchema = z.object({
   symbol: z.string(),
   tradeVolume: z.number(),
-  supply: z.string(),
+  supply: z.enum(["SCARCE", "LIMITED", "MODERATE", "ABUNDANT"]),
   purchasePrice: z.number(),
   sellPrice: z.number()
 });

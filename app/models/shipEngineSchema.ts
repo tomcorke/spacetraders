@@ -3,7 +3,7 @@ import { shipConditionSchema } from "./shipConditionSchema";
 import { shipRequirementsSchema } from "./shipRequirementsSchema";
 
 export const shipEngineSchema = z.object({
-  symbol: z.string(),
+  symbol: z.enum(["ENGINE_IMPULSE_DRIVE_I", "ENGINE_ION_DRIVE_I", "ENGINE_ION_DRIVE_II", "ENGINE_HYPER_DRIVE_I"]),
   name: z.string(),
   description: z.string(),
   condition: shipConditionSchema,

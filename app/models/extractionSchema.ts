@@ -2,7 +2,7 @@ import z from "zod";
 import { extractionYieldSchema } from "./extractionYieldSchema";
 
 export const extractionSchema = z.object({
-  shipSymbol: z.string(),
+  shipSymbol: z.string().min(1),
   yield: extractionYieldSchema
 });
 
