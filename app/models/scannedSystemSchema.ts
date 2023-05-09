@@ -7,7 +7,7 @@ export const scannedSystemSchema = z.object({
   type: systemTypeSchema,
   x: z.number(),
   y: z.number(),
-  distance: z.number()
+  distance: z.number(),
 });
 
 export type ScannedSystem = z.infer<typeof scannedSystemSchema>;

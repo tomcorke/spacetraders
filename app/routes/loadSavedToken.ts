@@ -1,8 +1,7 @@
 import fs from "fs-extra";
 import z from "zod";
 import path from "path";
-
-import { tokenSchema } from "~/services/spacetraders";
+import { tokenSchema } from "~/services/spacetraders-schema";
 
 const storedTokenSchema = z.object({
   token: tokenSchema,

@@ -117,30 +117,52 @@ const createSchema = (
       return `z.object({
 ${Object.entries(model.properties)
   .map(([key, value]) => {
-    return `${key}: ${createSchema(value as Model, imports, indentation + 2)}`;
+    const isOptional = !model.required?.includes(key);
+    const comment =
+      "description" in value && value.description
+        ? `// ${value.description}\n${" ".repeat(indentation + 2)}`
+        : "";
+    return `${comment}${key}: ${createSchema(
+      value as Model,
+      imports,
+      indentation + 2
+    )}${isOptional ? ".optional()" : ""},`;
   })
   .map((value) => ` `.repeat(indentation + 2) + value)
-  .join(",\n")}
-})`;
+  .join("\n")}
+${" ".repeat(indentation)}})`;
     case "string":
-      const decorators: string[] = [];
+      const stringDecorators: string[] = [];
       if (model.minLength) {
-        decorators.push(`.min(${model.minLength})`);
+        stringDecorators.push(`.min(${model.minLength})`);
       }
       if (model.format === "date-time") {
-        decorators.push(".datetime()");
+        stringDecorators.push(".datetime()");
       }
       if (model.enum) {
         return `z.enum([${model.enum
           .map((value) => `"${value}"`)
           .join(", ")}])`;
       }
-      return `z.string()${decorators.join("")}`;
+      return `z.string()${stringDecorators.join("")}`;
     case "array":
-      return `z.array()`;
+      return `z.array(
+${" ".repeat(indentation + 2)}${createSchema(
+        model.items as Model,
+        imports,
+        indentation + 2
+      )}
+${" ".repeat(indentation)})`;
     case "number":
     case "integer":
-      return `z.number()`;
+      const numberDecorators: string[] = [];
+      if (model.minimum !== undefined) {
+        numberDecorators.push(`.min(${model.minimum})`);
+      }
+      if (model.maximum !== undefined) {
+        numberDecorators.push(`.max(${model.maximum})`);
+      }
+      return `z.number()${numberDecorators.join("")}`;
     case "boolean":
       return `z.boolean()`;
     case undefined:

@@ -6,7 +6,7 @@ export const shipNavRouteWaypointSchema = z.object({
   type: waypointTypeSchema,
   systemSymbol: z.string().min(1),
   x: z.number(),
-  y: z.number()
+  y: z.number(),
 });
 
 export type ShipNavRouteWaypoint = z.infer<typeof shipNavRouteWaypointSchema>;

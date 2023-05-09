@@ -3,10 +3,11 @@ import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import type { FACTION, Token } from "~/services/spacetraders";
-import { tokenSchema } from "~/services/spacetraders";
+import type { FACTION } from "~/services/spacetraders";
 import { register } from "~/services/spacetraders";
 import z from "zod";
+import type { Token } from "~/services/spacetraders-schema";
+import { tokenSchema } from "~/services/spacetraders-schema";
 
 export type AuthState = {
   register: (symbol: string, faction: FACTION) => Promise<void>;

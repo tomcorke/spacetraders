@@ -1,5 +1,5 @@
 import { customAlphabet } from "nanoid";
-import { apiResponses } from "./spacetraders-schema";
+import { apiSchema } from "./spacetraders-schema";
 
 export enum FACTION {
   COSMIC = "COSMIC",
@@ -30,7 +30,7 @@ export const register = async ({ symbol, faction }: RegisterParams) => {
     }),
   });
 
-  return apiResponses.register.parse(await response.json());
+  return apiSchema.register.parse(await response.json());
 };
 
 const authenticatedFetch = async (token: string, url: string) => {
@@ -45,7 +45,7 @@ export const getAgent = async (token: string) => {
   const response = await authenticatedFetch(token, MY_AGENT_DETAILS_URL);
   const data = await response.json();
 
-  const myAgent = apiResponses.myAgent.parse(data);
+  const myAgent = apiSchema.myAgent.parse(data);
   return myAgent.data;
 };
 
@@ -53,7 +53,7 @@ export const getShips = async (token: string) => {
   console.log(`Fetching ships`);
 
   const response = await authenticatedFetch(token, `${BASE_URL}/v2/my/ships`);
-  const myShips = apiResponses.myShips.parse(await response.json());
+  const myShips = apiSchema.myShips.parse(await response.json());
   return myShips.data;
 };
 

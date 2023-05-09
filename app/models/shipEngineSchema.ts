@@ -6,9 +6,9 @@ export const shipEngineSchema = z.object({
   symbol: z.enum(["ENGINE_IMPULSE_DRIVE_I", "ENGINE_ION_DRIVE_I", "ENGINE_ION_DRIVE_II", "ENGINE_HYPER_DRIVE_I"]),
   name: z.string(),
   description: z.string(),
-  condition: shipConditionSchema,
-  speed: z.number(),
-  requirements: shipRequirementsSchema
+  condition: shipConditionSchema.optional(),
+  speed: z.number().min(1),
+  requirements: shipRequirementsSchema,
 });
 
 export type ShipEngine = z.infer<typeof shipEngineSchema>;
