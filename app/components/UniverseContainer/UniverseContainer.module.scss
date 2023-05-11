@@ -1,0 +1,13 @@
+.UniverseContainer {
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+}
+
+.UniverseCanvas {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}

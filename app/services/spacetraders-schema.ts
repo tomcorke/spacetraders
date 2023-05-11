@@ -1,9 +1,12 @@
 import z from "zod";
-import { agentSchema } from "~/models/agentSchema";
-import { contractSchema } from "~/models/contractSchema";
-import { factionSchema } from "~/models/factionSchema";
-import { metaSchema } from "~/models/metaSchema";
-import { shipSchema } from "~/models/shipSchema";
+
+import { agentSchema } from "~/schema/agentSchema";
+import { contractSchema } from "~/schema/contractSchema";
+import { cooldownSchema } from "~/schema/cooldownSchema";
+import { factionSchema } from "~/schema/factionSchema";
+import { metaSchema } from "~/schema/metaSchema";
+import { shipSchema } from "~/schema/shipSchema";
+import { systemSchema } from "~/schema/systemSchema";
 
 export const tokenSchema = z.string();
 
@@ -30,4 +33,9 @@ export const apiSchema = {
   register: response(profileSchema),
   myAgent: response(agentSchema),
   myShips: responseWithMeta(z.array(shipSchema)),
+  myContracts: responseWithMeta(z.array(contractSchema)),
+  listSystems: responseWithMeta(z.array(systemSchema)),
+  shipScanSystems: response(
+    z.object({ cooldown: cooldownSchema, systems: z.array(systemSchema) })
+  ),
 } as const;

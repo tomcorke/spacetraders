@@ -1,0 +1,28 @@
+.ContractList {
+  margin-bottom: 1em;
+  border: 1px solid #555;
+  padding: 10px;
+}
+
+.ContractGrid {
+  margin-bottom: 1em;
+}
+
+.ContractRow,
+.ContractRowHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.ContractRowHeader {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.ContractManifest {
+}
+
+.ContractManifestRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}

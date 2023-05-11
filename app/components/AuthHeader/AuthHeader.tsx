@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { AuthContext } from "~/contexts/AuthContext";
 
-import STYLES from "./AuthHeader.module.css";
+import { AuthContext } from "~/contexts/AuthContext";
 import { FACTION } from "~/services/spacetraders";
 import { AgentContext } from "~/contexts/AgentContext";
+
+import STYLES from "./AuthHeader.module.css";
 
 export const AuthHeader = () => {
   const authContext = useContext(AuthContext);

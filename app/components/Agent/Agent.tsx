@@ -1,6 +1,8 @@
-import STYLES from "./Agent.module.css";
 import { useContext } from "react";
+
 import { AgentContext } from "~/contexts/AgentContext";
+
+import STYLES from "./Agent.module.css";
 
 export const Agent = () => {
   const agentContext = useContext(AgentContext);

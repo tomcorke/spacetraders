@@ -1,9 +1,10 @@
 import * as path from "path";
+
 import * as fs from "fs-extra";
 import * as z from "zod";
 
 const INPUT_DIR = path.join(__dirname, "../api-docs/models");
-const OUTPUT_DIR = path.join(__dirname, "../app/models");
+const OUTPUT_DIR = path.join(__dirname, "../app/schema");
 
 const inputFiles = fs.readdirSync(INPUT_DIR);
 

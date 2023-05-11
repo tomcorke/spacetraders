@@ -1,7 +1,8 @@
 import type { PropsWithChildren } from "react";
 
-import STYLES from "./Wrapper.module.css";
 import { ContextProviderWrapper } from "./ContextProviderWrapper";
+
+import STYLES from "./Wrapper.module.css";
 
 export const Wrapper = ({ children }: PropsWithChildren<{}>) => (
   <div className={STYLES.Wrapper}>

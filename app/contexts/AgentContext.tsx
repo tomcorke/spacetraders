@@ -3,10 +3,12 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import type { Agent } from "~/services/spacetraders";
+
 import { getProfile } from "~/services/spacetraders";
-import { AuthContext } from "./AuthContext";
 import { withRetry } from "~/services/retry";
+import type { Agent } from "~/schema/agentSchema";
+
+import { AuthContext } from "./AuthContext";
 
 export type AgentState = {
   agent?: Agent;
@@ -19,7 +21,7 @@ export const AgentContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const [agent, setAgent] = useState<Agent | undefined>(undefined);
 
-  // Update agent on token change
+  // Update on token change
   useEffect(() => {
     if (!token) {
       setAgent(undefined);
@@ -30,7 +32,7 @@ export const AgentContextProvider = ({ children }: PropsWithChildren<{}>) => {
       .then((profile) => {
         setAgent(profile.agent);
       })
-      .catch((err) => console.error(`Error loading profile: ${err}`));
+      .catch((err) => console.error(`Error loading agent: ${err}`));
   }, [token]);
 
   return (

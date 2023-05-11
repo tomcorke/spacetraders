@@ -1,8 +1,11 @@
-import type { ActionArgs } from "@remix-run/node";
+import path from "path";
+
 import fs from "fs-extra";
 import z from "zod";
-import path from "path";
+
 import { tokenSchema } from "~/services/spacetraders-schema";
+
+import type { ActionArgs } from "@remix-run/node";
 
 const saveTokenSchema = z.object({
   token: tokenSchema,
