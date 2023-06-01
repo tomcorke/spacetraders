@@ -25,9 +25,12 @@ export class SystemsManager extends Subscribable<void> {
     return Math.round(coord / 10);
   }
 
-  async fetchAndAddSystems(token: string) {
-    for await (const system of listAllSystems(token)) {
-      this.addSystem(system);
+  async *fetchAndAddSystems(token: string) {
+    for await (const systems of listAllSystems(token)) {
+      for (const system of systems) {
+        this.addSystem(system);
+      }
+      yield this.systems;
     }
   }
 

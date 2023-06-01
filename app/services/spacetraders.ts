@@ -98,14 +98,13 @@ export async function* listAllSystems(token: string) {
     const systems = apiSchema.listSystems.parse(data);
     if (
       systems.meta.page * systems.meta.limit >= systems.meta.total ||
-      page >= 1
+      page >= 3
     ) {
       stop = true;
     }
     page += 1;
-    for (const system of systems.data) {
-      yield system;
-    }
+    // Yield an page of systems
+    yield systems.data;
   }
 }
 
